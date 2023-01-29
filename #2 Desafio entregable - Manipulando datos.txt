@@ -1,0 +1,62 @@
+-- LUCAS FERNANDO GOMEZ CARMONA
+
+-- Deberas realizar una consulta que traiga los datos del usuario que tiene como nombre de usuario 'eperez'
+
+SELECT * FROM Usuario WHERE NombreUsuario = 'eperez'
+
+-- Deberas realizar una consulta que busque un usuario y una contrasena especifica; si los 2 no coinciden que no traiga nada
+
+SELECT * FROM Usuario WHERE NombreUsuario = 'eperez' AND Contraseña = 'SoyErnestoPerez'
+
+-- Deberas realizar una consulta que traiga todos los productos cargados por el usuario que tiene ID = 3
+
+SELECT * FROM Producto WHERE IdUsuario = 3
+
+-- Deberas realizar un Insert que inserte un nuevo usuario con todos sus datos
+
+INSERT INTO Usuario(Id,Nombre,Apellido,NombreUsuario,Contraseña,Mail)
+VALUES(3,'Lucas','Gomez','LucasGomez','123456','lucas.gomez.et7@gmail.com')
+
+-- Deberas realizar un Insert que inserte un producto nuevo a su tabla
+
+INSERT INTO Producto(Id,Descripciones,Costo,PrecioVenta,Stock,IdUsuario)
+VALUES(123,'Camisa',2000,2500,11,2)
+
+-- Deberas cambiar la contrasena del usuario Ernesto
+
+UPDATE Usuario SET Contraseña = 'PasswordCambiada' WHERE Nombre = 'Ernesto'
+
+-- Deberas eliminar el usuario con apellido Casazza
+
+DELETE FROM Usuario WHERE Apellido = 'Casazza'
+
+-- Deberas poner en 3 el stock de los Pantalon Jean en la tabla Producto
+
+UPDATE Producto SET Stock = 3 WHERE Descripciones = 'Pantalon Jean'
+
+-- Deberas eliminar el producto 'Campera'
+
+DELETE FROM Producto WHERE Descripciones = 'Campera'
+
+-- Obtener los nombres de usuario que cargaron los productos
+
+SELECT Usuario.Id,Usuario.Nombre,Usuario.Apellido FROM Usuario INNER JOIN Producto ON Producto.IdUsuario = Usuario.Id
+
+-- Obtener todos los productos vendidos
+
+SELECT * FROM ProductoVendido
+
+-- Obtener las ventas que registren dos o mas productos vendidos del mismo tipo
+
+SELECT * FROM ProductoVendido WHERE Stock >= 2
+
+-- Insertar la venta de 20 productos 'Remera manga larga' vendidos por el usuario 2
+
+INSERT INTO Producto(Id,Descripciones,Costo,PrecioVenta,Stock,IdUsuario)
+VALUES(11,'Remera manga larga',300,500,10,2)
+
+INSERT INTO ProductoVendido(Id,Stock,IdProducto,IdVenta)
+VALUES(30,10,11,12)
+
+INSERT INTO Venta(Id,Comentarios,IdUsuario)
+VALUES(7,'Remera manga larga',2)
